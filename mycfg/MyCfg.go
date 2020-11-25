@@ -10,11 +10,11 @@ import (
 )
 
 //Read 主模块，输入配置文件名和配置表达符号，读取配置返回配置表
-func Read(fileName, oc string) map[string]string {
+func Read(fileName, oc, ed string) map[string]string {
 	//CfgMap 配置表
 	var CfgMap map[string]string
 	CfgMap = make(map[string]string)
-	results := ReGet("test.cfg", "=")
+	results := ReGet(fileName, oc, ed)
 	for _, result := range results {
 		CfgMap[result[1]] = result[2]
 
@@ -39,9 +39,9 @@ func StringRead(fileName string) string {
 }
 
 //ReGet 配置匹配模块，输入文件名和配置表达式符号，可以匹配“=”与“：”
-func ReGet(fileName, oc string) (res [][]string) {
+func ReGet(fileName, oc, ed string) (res [][]string) {
 	cfgfile := StringRead(fileName)
-	re := regexp.MustCompile(`([^` + oc + `]+)` + oc + `([^\n]+)\n`)
+	re := regexp.MustCompile(`([^` + oc + `]+)` + oc + `([^` + ed + `]+)` + ed)
 	//解释规则，解析正则表达式，如果成功则返回
 	if re == nil {
 		fmt.Println("error regexp")

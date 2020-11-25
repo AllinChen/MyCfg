@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	fmt.Println(mycfg.Read("test.cfg", "="))
+	fmt.Println(mycfg.Read("test.cfg", "=", "\n"))
 
 }
