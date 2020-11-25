@@ -3,6 +3,7 @@ package mycfg
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"regexp"
 
@@ -16,6 +17,10 @@ func Read(fileName, oc, ed string) map[string]string {
 	CfgMap = make(map[string]string)
 	results := ReGet(fileName, oc, ed)
 	for _, result := range results {
+		result[1] = strings.Replace(result[1], "\n", "", -1)
+		result[2] = strings.Replace(result[2], "\n", "", -1)
+		result[1] = strings.Replace(result[1], "\r", "", -1)
+		result[2] = strings.Replace(result[2], "\r", "", -1)
 		CfgMap[result[1]] = result[2]
 
 	}
