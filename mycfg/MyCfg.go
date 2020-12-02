@@ -40,7 +40,7 @@ func StringRead(fileName string) string {
 		return ""
 	}
 	log.Info("读取配置文件成功")
-	return string(f)
+	return string(f) + "\n"
 }
 
 //ReGet 配置匹配模块，输入文件名和配置表达式符号，可以匹配“=”与“：”
